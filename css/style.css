@@ -2,6 +2,8 @@ body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+
+    background-color: rgb(117, 222, 142);
 }
 
 .field {
@@ -11,12 +13,15 @@ body {
     text-align: center;
 }
 
+.field__info {
+    font-size: 25px;
+}
+
 
 .block {
     width: 100px;
     height: 100px;
     border: 1px solid crimson;
-    cursor: pointer;
     text-align: center;
     font-size: 100px;
     line-height: 94px;
@@ -45,10 +50,29 @@ body {
     cursor: pointer;
 }
 .field__button:hover {
-    background-color: rgb(219, 55, 88);
+    background-color: rgb(221, 35, 72);
+}
+.field__button:active {
+    box-shadow: inset 1px 1px 5px -1px;
+    background-color: #be0d30;
+    color: #f2f2f2;
 }
 
 .points {
     padding-bottom: 30px;
     font-size: 32px;
+}
+
+.cross {
+    background-image: url("../img/cross.svg");
+    background-size: 95%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.zero {
+    background-image: url("../img/zero.svg");
+    background-size: 95%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
