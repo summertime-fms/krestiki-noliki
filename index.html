@@ -2,25 +2,20 @@
 <html lang="ru">
   <head>
       <meta charset="utf-8">
+      <title>tic-tac-toe</title>
       <link rel="stylesheet" href="css/style.css">
-      <title>Крестики-нолики</title>
+      <script src="js/script.js" defer></script>
   </head>
   <body>
     <div class="field">
-        <div class="field__wrapper">
       
-      <div class="block cell1"></div>
-	  <div class="block cell2"></div>
-	  <div class="block cell3"></div>
-	  <div class="block cell4"></div>
-	  <div class="block cell5"></div>
-	  <div class="block cell6"></div>
-	  <div class="block cell7"></div>
-	  <div class="block cell8"></div>
-	  <div class="block cell9"></div>	
+      <div class="field__wrapper"></div>
+      <div class="points">
+        <span class="points__field points__field--cross">0</span>
+        <span class="points__field points__field--zero">0</span>
+      </div>
+      <button class="field__button" type="button">Играть!</button>
     </div>
-    <button class="field__button" type="button">Играть!</button>
-    </div>
-    <script src="js/script.js" type="text/javascript"></script>
+    
   </body>
 </html>

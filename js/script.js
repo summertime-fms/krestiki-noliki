@@ -1,10 +1,60 @@
-let buttonStart = document.querySelector(".field__button");
-function getRandomNumber() {
-   return Math.round(Math.random())
+for(let i=0; i < 9; i++) {
+    document.querySelector(".field__wrapper").innerHTML+='<div class="block"></div>'
+}
+let allBlocks = document.getElementsByClassName("block");
+
+document.querySelector(".field__button").onclick = function() {
+let fieldMain = document.querySelector(".field");
+let hod = Math.round(Math.random());
+if (hod) {
+    fieldMain.innerHTML+='<p class="field__info">Первыми ходят нолики!</p>'
+} else {
+    fieldMain.innerHTML+='<p class="field__info">Первыми ходят крестики!</p>'
 }
 
-buttonStart.addEventListener("click", function() {
-    let isTrue = getRandomNumber();
-})
+let field = document.querySelector(".field__wrapper");
+field.onclick = function(event) {
+    if (event.target.className == 'block') {
+        if (hod % 2 == 0) {
+            event.target.innerHTML = 'X'
+        } else {
+        event.target.innerHTML = '0';
+        }
 
-console.log(isTrue);
+        hod++;
+        checkWinner();
+    } 
+} 
+    function checkWinner() {
+        let allBlocks = document.getElementsByClassName("block");
+        let winComb = [
+            [allBlocks[0], allBlocks[1], allBlocks[2]],
+            [allBlocks[3], allBlocks[4], allBlocks[5]],
+            [allBlocks[6], allBlocks[7], allBlocks[8]],
+            [allBlocks[0], allBlocks[3], allBlocks[6]],
+            [allBlocks[1], allBlocks[4], allBlocks[7]],
+            [allBlocks[2], allBlocks[5], allBlocks[8]],
+            [allBlocks[0], allBlocks[4], allBlocks[8]],
+            [allBlocks[2], allBlocks[4], allBlocks[6]]
+        ];
+        for (let i = 0; i < winComb.length; i++) {
+            if (winComb[i][0].innerHTML == winComb[i][1].innerHTML && winComb[i][1].innerHTML == winComb[i][2].innerHTML && winComb[i][2].innerHTML == 'X') {
+                alert("Победили крестики!");
+                reboot();
+             break 
+            }
+            if (winComb[i][0].innerHTML == winComb[i][1].innerHTML && winComb[i][1].innerHTML == winComb[i][2].innerHTML && winComb[i][2].innerHTML == '0') {
+                alert("Победил нолики!");
+                reboot();
+             break 
+            }
+        
+    }
+}
+    function reboot() {
+        for (let i = 0; i < allBlocks.length; i++) {
+            allBlocks[i].innerHTML = "";
+        }
+    }
+}
+
