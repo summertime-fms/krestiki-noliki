@@ -2,33 +2,42 @@ for(let i=0; i < 9; i++) {
     document.querySelector(".field__wrapper").innerHTML+='<div class="block"></div>'
 }
 let allBlocks = document.getElementsByClassName("block");
-// const cross = '<div class="cross"></div>';
-// const zero = '<div class="zero"></div>';
+let fieldMain = document.querySelector(".field");
+let hod = 0;
+let zeroFirst = Math.round(Math.random());
+console.log(zeroFirst);
 
 document.querySelector(".field__button").onclick = function() {
-for (let i = 0; i < allBlocks.length; i++) {
-allBlocks[i].style.cursor = "pointer";
-}
-let fieldMain = document.querySelector(".field");
-let hod = Math.round(Math.random());
-if (hod) {
-    fieldMain.innerHTML+='<p class="field__info">Первыми ходят нолики!</p>'
-} else {
+    for (let i = 0; i < allBlocks.length; i++) {
+    allBlocks[i].style.cursor = "pointer";
+    }
+
+if (zeroFirst) {
     fieldMain.innerHTML+='<p class="field__info">Первыми ходят крестики!</p>'
+    hod = zeroFirst;
+    
+} else {
+    fieldMain.innerHTML+='<p class="field__info">Первыми ходят нолики!</p>'
+    hod = zeroFirst; 
 }
 
 let field = document.querySelector(".field__wrapper");
 field.onclick = function(event) {
     if (event.target.className == 'block') {
         if (hod % 2 == 0) {
-            event.target.classList.add("cross");
+            event.target.classList.add("zero");
         } else {
-        event.target.classList.add("zero");
+            event.target.classList.add("cross");
         }
-
-        hod++;
+        if (hod == 9) {
+            let restart = document.querySelector(".field__button--restart");
+            restart.style.display = "inline-block";
+            document.querySelector(".field__wrapper").style.opacity = "0.5";
+            // document.querySelector(".field__button").style.display = "none";
+        }
+        hod++;        
         checkWinner();
-    } 
+    }
 } 
     function checkWinner() {
         let allBlocks = document.getElementsByClassName("block");
@@ -61,6 +70,8 @@ field.onclick = function(event) {
             allBlocks[i].classList.remove("zero");
             allBlocks[i].classList.remove("cross");
         }
+        document.querySelector('.field__info').textContent = '';
+        hod = 0;
     }
 }
 
