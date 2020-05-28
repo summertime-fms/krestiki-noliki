@@ -1,12 +1,17 @@
-for(let i=0; i < 9; i++) {
-    document.querySelector(".field__wrapper").innerHTML+='<div class="block"></div>'
-}
 let allBlocks = document.getElementsByClassName("block");
 let fieldMain = document.querySelector(".field");
 let hod = 0;
 let zeroFirst = Math.round(Math.random());
 
-document.querySelector(".field__button").onclick = function() {
+let restartButton = document.querySelector(".field__button--restart");
+let playButton = document.querySelector(".field__button--play");
+
+
+for(let i=0; i < 9; i++) {
+    document.querySelector(".field__wrapper").innerHTML+='<div class="block"></div>'
+}
+
+playButton.onclick = function() {
     for (let i = 0; i < allBlocks.length; i++) {
     allBlocks[i].style.cursor = "pointer";
     }
@@ -53,11 +58,11 @@ field.onclick = function(event) {
         for (let i = 0; i < winComb.length; i++) {
             if (winComb[i][0].classList.contains("cross") && winComb[i][1].classList.contains("cross") && winComb[i][2].classList.contains("cross")) {
                 highlight(winComb[i])
-                // reboot();
+                playButton.style.display = "none";
+                console.log(playButton);
                 break
             } else if (winComb[i][0].classList.contains("zero") && winComb[i][1].classList.contains("zero") && winComb[i][2].classList.contains("zero")) {
                 highlight(winComb[i])
-                // reboot();
              break 
             }
         
@@ -76,6 +81,6 @@ field.onclick = function(event) {
 
 function highlight(element) {
     for (let j = 0; j < 3; j++) {
-        element[j].style.backgroundColor = "red"
+        element[j].classList.add("block--red");
     }
 }
