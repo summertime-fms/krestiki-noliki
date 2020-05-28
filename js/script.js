@@ -5,7 +5,6 @@ let allBlocks = document.getElementsByClassName("block");
 let fieldMain = document.querySelector(".field");
 let hod = 0;
 let zeroFirst = Math.round(Math.random());
-console.log(zeroFirst);
 
 document.querySelector(".field__button").onclick = function() {
     for (let i = 0; i < allBlocks.length; i++) {
@@ -53,18 +52,17 @@ field.onclick = function(event) {
         ];
         for (let i = 0; i < winComb.length; i++) {
             if (winComb[i][0].classList.contains("cross") && winComb[i][1].classList.contains("cross") && winComb[i][2].classList.contains("cross")) {
-                alert("Победили крестики!")
-                reboot();
-             break 
-            }
-            if (winComb[i][0].classList.contains("zero") && winComb[i][1].classList.contains("zero") && winComb[i][2].classList.contains("zero")) {
-                alert("Победили нолики!");
-                reboot();
+                highlight(winComb[i])
+                // reboot();
+                break
+            } else if (winComb[i][0].classList.contains("zero") && winComb[i][1].classList.contains("zero") && winComb[i][2].classList.contains("zero")) {
+                highlight(winComb[i])
+                // reboot();
              break 
             }
         
     }
-}
+
     function reboot() {
         for (let i = 0; i < allBlocks.length; i++) {
             allBlocks[i].classList.remove("zero");
@@ -74,4 +72,10 @@ field.onclick = function(event) {
         hod = 0;
     }
 }
+}
 
+function highlight(element) {
+    for (let j = 0; j < 3; j++) {
+        element[j].style.backgroundColor = "red"
+    }
+}
