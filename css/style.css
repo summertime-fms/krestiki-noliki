@@ -67,7 +67,19 @@ body {
 
 .field__button--restart {
     display: none;
+   
+    outline: none;
+    background: none;
+    padding: 0;
+    border: none;
+    margin: 0;
     margin-left: 25px;
+    font-size: 30px;
+    background-color: crimson;
+    color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 30px 30px;
+    cursor: pointer;
 }
 
 .points {
@@ -94,5 +106,5 @@ body {
 }
 
 .button--showed {
-    display: block;
+   display: inline-block;
 }
