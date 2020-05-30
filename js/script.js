@@ -6,8 +6,6 @@ let allBlocks = document.getElementsByClassName("block");
 let fieldMain = document.querySelector(".field");
 let hod = 0;
 let zeroFirst = Math.round(Math.random());
-
-let restartButton = document.querySelector(".field__button--restart");
 let playButton = document.querySelector(".field__button--play");
 
 
@@ -24,6 +22,8 @@ if (zeroFirst) {
     fieldMain.innerHTML+='<p class="field__info">Первыми ходят нолики!</p>'
     hod = zeroFirst; 
 }
+
+
 
 
 let field = document.querySelector(".field__wrapper");
@@ -54,23 +54,29 @@ field.onclick = function(event) {
         for (let i = 0; i < winComb.length; i++) {
             if (winComb[i][0].classList.contains("cross") && winComb[i][1].classList.contains("cross") && winComb[i][2].classList.contains("cross")) {
                 highlight(winComb[i])
-                buttonShow(restartButton);
+                buttonShow(document.querySelector(".field__button--restart"));
                 break
             } else if (winComb[i][0].classList.contains("zero") && winComb[i][1].classList.contains("zero") && winComb[i][2].classList.contains("zero")) {
                 highlight(winComb[i])
+                buttonShow(document.querySelector(".field__button--restart"));
              break 
             }
         
     }
+    (document.querySelector(".field__button--restart")).addEventListener("click", function() {
+        reboot();
+    })
+    function reboot() {
+        for (let i = 0; i < allBlocks.length; i++) {
+            allBlocks[i].classList.remove("zero");
+            allBlocks[i].classList.remove("cross");
+            allBlocks[i].classList.remove("block--red");
+        }
+        document.querySelector('.field__info').textContent = '';
+        hod = 0;
+    }
 
-    // function reboot() {
-    //     for (let i = 0; i < allBlocks.length; i++) {
-    //         allBlocks[i].classList.remove("zero");
-    //         allBlocks[i].classList.remove("cross");
-    //     }
-    //     document.querySelector('.field__info').textContent = '';
-    //     hod = 0;
-    // }
+    
 }
 
 
@@ -81,6 +87,4 @@ function highlight(element) {
 }
 function buttonShow(button) {
     button.classList.add("button--showed")
-    console.log(button);
-    
 }
