@@ -7,6 +7,7 @@ let fieldMain = document.querySelector(".field");
 let hod = 0;
 let zeroFirst = Math.round(Math.random());
 let playButton = document.querySelector(".field__button--play");
+let restartButton = document.querySelector(".field__button--restart");
 
 
 playButton.addEventListener("click", function() {
@@ -15,11 +16,19 @@ playButton.addEventListener("click", function() {
     }
 
 if (zeroFirst) {
-    fieldMain.innerHTML+='<p class="field__info">Первыми ходят крестики!</p>'
+    let message = document.createElement("p");
+    message.className = 'field__info';
+    message.innerHTML = 'Первыми ходят крестики!';
+
+    fieldMain.append(message);
     hod = zeroFirst;
     
 } else {
-    fieldMain.innerHTML+='<p class="field__info">Первыми ходят нолики!</p>'
+    let message = document.createElement("p");
+    message.className = 'field__info';
+    message.innerHTML = 'Первыми ходят нолики!';
+
+    fieldMain.append(message);
     hod = zeroFirst; 
 }
 
@@ -52,13 +61,17 @@ field.onclick = function(event) {
             [allBlocks[2], allBlocks[4], allBlocks[6]]
         ];
         for (let i = 0; i < winComb.length; i++) {
-            if (winComb[i][0].classList.contains("cross") && winComb[i][1].classList.contains("cross") && winComb[i][2].classList.contains("cross")) {
+            if (winComb[i][0].classList.contains('cross') && winComb[i][1].classList.contains("cross") && winComb[i][2].classList.contains("cross")) {
                 highlight(winComb[i])
-                buttonShow(document.querySelector(".field__button--restart"));
+                restartButton.classList.add('button--showed');
+                playButton.setAttribute('disabled', '')
+               
                 break
-            } else if (winComb[i][0].classList.contains("zero") && winComb[i][1].classList.contains("zero") && winComb[i][2].classList.contains("zero")) {
+            } else if (winComb[i][0].classList.contains('zero') && winComb[i][1].classList.contains("zero") && winComb[i][2].classList.contains("zero")) {
                 highlight(winComb[i])
-                buttonShow(document.querySelector(".field__button--restart"));
+                restartButton.classList.add('button--showed');
+                playButton.setAttribute('disabled', '')
+               
              break 
             }
         
@@ -84,7 +97,4 @@ function highlight(element) {
     for (let j = 0; j < 3; j++) {
         element[j].classList.add("block--red");
     }  
-}
-function buttonShow(button) {
-    button.classList.add("button--showed")
 }
