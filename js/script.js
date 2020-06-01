@@ -65,6 +65,7 @@ field.onclick = function(event) {
                 highlight(winComb[i])
                 restartButton.classList.add('button--showed');
                 playButton.setAttribute('disabled', '')
+
                
                 break
             } else if (winComb[i][0].classList.contains('zero') && winComb[i][1].classList.contains("zero") && winComb[i][2].classList.contains("zero")) {
@@ -84,6 +85,7 @@ field.onclick = function(event) {
             allBlocks[i].classList.remove("zero");
             allBlocks[i].classList.remove("cross");
             allBlocks[i].classList.remove("block--red");
+            allBlocks[i].classList.remove("block--disable");
         }
         document.querySelector('.field__info').textContent = '';
         hod = 0;
@@ -97,4 +99,9 @@ function highlight(element) {
     for (let j = 0; j < 3; j++) {
         element[j].classList.add("block--red");
     }  
+    for (let i = 0; i < allBlocks.length; i++) {
+        if (!allBlocks[i].classList.contains("block--red")) {
+            allBlocks[i].classList.add("block--disable");
+        }
+    }
 }
